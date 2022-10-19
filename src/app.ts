@@ -25,9 +25,9 @@ const execCmd = (cmd: string, args: string[] = []) =>
     });
 
 const commitFile = async () => {
-    await execCmd('git', ['config', '--global', 'user.email', 'SummerSec@users.noreply.github.com']);
+    execCmd('git', ['config', '--global', 'user.email', 'SummerSec@users.noreply.github.com']);
     core.info(`git config --global user.email SummerSec@users.noreply.github.com`);
-    await execCmd('git', ['config', '--global', 'user.name', 'SummerSec']);
+    execCmd('git', ['config', '--global', 'user.name', 'SummerSec']);
     core.info(`git config --global user.name SummerSec`);
     await execCmd('git', ['add', OUTPUT_PATH]);
     await execCmd('git', ['commit', '-m', ' :busts_in_silhouette:  Generate profile summary cards']);
@@ -100,7 +100,7 @@ const action = async () => {
         while (retry < maxRetry) {
             retry += 1;
             try {
-                await commitFile();
+                commitFile();
             } catch (error) {
                 if (retry == maxRetry) {
                     throw error;
